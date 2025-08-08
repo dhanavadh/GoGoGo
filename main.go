@@ -1,13 +1,16 @@
 package main
 
 import (
-	"fmt"
-
-	"github.com/google/uuid"
+	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	id := uuid.New()
-	fmt.Printf("Generated UUID: %s\n", id.String())
-	fmt.Println("Hello, World!")
+	app := fiber.New()
+
+	// Define a simple route
+	app.Get("/", func(c *fiber.Ctx) error {
+		return c.SendString("Hello, World!")
+	})
+
+	app.Listen(":8080")
 }
